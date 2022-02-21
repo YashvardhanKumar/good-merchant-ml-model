@@ -1,7 +1,7 @@
 from werkzeug.utils import secure_filename
-from flask import Flask, flash, request, redirect, send_file, send_from_directory, url_for
+from flask import Flask, flash, request, redirect
 import os
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, request
 from keras import models
 from ML_Model import ML_Model_Good_Merchant as GMM
 from flask_cors import CORS
