@@ -52,7 +52,7 @@ def image_binary():
 @app.route('/qimageurl', methods=['POST'])
 def image_url():
     response.headers["Content-Type"] = "application/json"
-    self.response.out.write(json.dumps(response))
+#     self.response.out.write(json.dumps(response))
     path = request.form['url']
     if path:
         image = GMM.process_image_url(path)
@@ -65,11 +65,11 @@ def image_url():
     return res
 
 
-# @app.after_request  # blueprint can also be app~~
-# def after_request(response):
-#     header = response.headers
-#     header['Access-Control-Allow-Origin'] = '*'
-#     return response
+@app.after_request  # blueprint can also be app~~
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 if __name__ == '__main__':
