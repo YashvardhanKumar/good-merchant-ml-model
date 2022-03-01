@@ -69,6 +69,7 @@ def image_url():
 def after_request(response):
     header = response.headers
     header['Access-Control-Allow-Origin'] = '*'
+    header["Content-Type"] = "application/json"
     return response
 
 
