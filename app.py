@@ -58,7 +58,9 @@ def image_url():
         flash('No image selected for uploading or no URL added')
         return redirect('/searchimage')
     pred_text = GMM.predict_image(image, model)
-    return {'q':pred_text}
+    res = flask.jsonify({'q':pred_text})
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    return res
 
 
 @app.after_request  # blueprint can also be app~~
