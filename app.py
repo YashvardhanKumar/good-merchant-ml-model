@@ -22,6 +22,12 @@ app.secret_key = "secret-key"
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.after_request  # blueprint can also be app~~
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+#     header["Content-Type"] = "application/json"
+    return response
 
 @app.route('/qimage', methods=['POST'])
 def image_binary():
@@ -69,7 +75,7 @@ def image_url():
 def after_request(response):
     header = response.headers
     header['Access-Control-Allow-Origin'] = '*'
-    header["Content-Type"] = "application/json"
+#     header["Content-Type"] = "application/json"
     return response
 
 
