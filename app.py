@@ -51,6 +51,7 @@ def image_binary():
 
 @app.route('/qimageurl', methods=['POST'])
 def image_url():
+    response.headers["Content-Type"] = "application/json"
     path = request.form['url']
     if path:
         image = GMM.process_image_url(path)
@@ -59,15 +60,15 @@ def image_url():
         return redirect('/searchimage')
     pred_text = GMM.predict_image(image, model)
     res = flask.jsonify({'q':pred_text})
-    res.headers.add('Access-Control-Allow-Origin', '*')
+#     res.headers.add('Access-Control-Allow-Origin', '*')
     return res
 
 
-@app.after_request  # blueprint can also be app~~
-def after_request(response):
-    header = response.headers
-    header['Access-Control-Allow-Origin'] = '*'
-    return response
+# @app.after_request  # blueprint can also be app~~
+# def after_request(response):
+#     header = response.headers
+#     header['Access-Control-Allow-Origin'] = '*'
+#     return response
 
 
 if __name__ == '__main__':
