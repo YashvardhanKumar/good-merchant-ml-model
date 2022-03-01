@@ -51,7 +51,7 @@ def image_binary():
 
 @app.route('/qimageurl', methods=['POST'])
 def image_url():
-    response.headers["Content-Type"] = "application/json"
+#     response.headers["Content-Type"] = "application/json"
 #     self.response.out.write(json.dumps(response))
     path = request.form['url']
     if path:
